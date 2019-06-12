@@ -75,5 +75,20 @@ namespace prjVendas
         {
             mnuVenda_Click(null, null);
         }
+
+        private void mnuHorizontal_Click(object sender, EventArgs e)
+        {
+            LayoutMdi(MdiLayout.TileHorizontal);
+        }
+
+        private void mnuVertical_Click(object sender, EventArgs e)
+        {
+            LayoutMdi(MdiLayout.TileVertical);
+        }
+
+        private void mnuCascata_Click(object sender, EventArgs e)
+        {
+            LayoutMdi(MdiLayout.Cascade);
+        }
     }
 }

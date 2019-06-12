@@ -31,25 +31,29 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMenu));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.mnuArquivo = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuCliente = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuProduto = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuVenda = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuSair = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.lblHora = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnCadCliente = new System.Windows.Forms.ToolStripButton();
+            this.btnProduto = new System.Windows.Forms.ToolStripButton();
             this.btnVenda = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
-            this.btnProduto = new System.Windows.Forms.ToolStripButton();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblHora = new System.Windows.Forms.ToolStripStatusLabel();
             this.tmrHora = new System.Windows.Forms.Timer(this.components);
+            this.janelaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuCascata = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuVertical = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuHorizontal = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -58,40 +62,13 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuArquivo});
+            this.mnuArquivo,
+            this.janelaToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnCadCliente,
-            this.btnProduto,
-            this.btnVenda,
-            this.toolStripSeparator2,
-            this.toolStripDropDownButton1,
-            this.toolStripSeparator3,
-            this.toolStripButton3,
-            this.toolStripButton4});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 24);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(800, 25);
-            this.toolStrip1.TabIndex = 1;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1,
-            this.lblHora});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 428);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(800, 22);
-            this.statusStrip1.TabIndex = 2;
-            this.statusStrip1.Text = "statusStrip1";
             // 
             // mnuArquivo
             // 
@@ -136,19 +113,22 @@
             this.mnuSair.Size = new System.Drawing.Size(188, 22);
             this.mnuSair.Text = "&Sair";
             // 
-            // toolStripStatusLabel1
+            // toolStrip1
             // 
-            this.toolStripStatusLabel1.BackColor = System.Drawing.SystemColors.Control;
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(635, 17);
-            this.toolStripStatusLabel1.Spring = true;
-            // 
-            // lblHora
-            // 
-            this.lblHora.AutoSize = false;
-            this.lblHora.BackColor = System.Drawing.SystemColors.Control;
-            this.lblHora.Name = "lblHora";
-            this.lblHora.Size = new System.Drawing.Size(170, 17);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnCadCliente,
+            this.btnProduto,
+            this.btnVenda,
+            this.toolStripSeparator2,
+            this.toolStripDropDownButton1,
+            this.toolStripSeparator3,
+            this.toolStripButton3,
+            this.toolStripButton4});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 24);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(800, 25);
+            this.toolStrip1.TabIndex = 1;
+            this.toolStrip1.Text = "toolStrip1";
             // 
             // btnCadCliente
             // 
@@ -159,6 +139,15 @@
             this.btnCadCliente.Size = new System.Drawing.Size(23, 22);
             this.btnCadCliente.Text = "toolStripButton1";
             this.btnCadCliente.Click += new System.EventHandler(this.btnCadCliente_Click);
+            // 
+            // btnProduto
+            // 
+            this.btnProduto.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnProduto.Image = ((System.Drawing.Image)(resources.GetObject("btnProduto.Image")));
+            this.btnProduto.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnProduto.Name = "btnProduto";
+            this.btnProduto.Size = new System.Drawing.Size(23, 22);
+            this.btnProduto.Text = "toolStripButton1";
             // 
             // btnVenda
             // 
@@ -207,20 +196,67 @@
             this.toolStripButton4.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton4.Text = "toolStripButton4";
             // 
-            // btnProduto
+            // statusStrip1
             // 
-            this.btnProduto.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnProduto.Image = ((System.Drawing.Image)(resources.GetObject("btnProduto.Image")));
-            this.btnProduto.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnProduto.Name = "btnProduto";
-            this.btnProduto.Size = new System.Drawing.Size(23, 22);
-            this.btnProduto.Text = "toolStripButton1";
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1,
+            this.lblHora});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 428);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(800, 22);
+            this.statusStrip1.TabIndex = 2;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.BackColor = System.Drawing.SystemColors.Control;
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(615, 17);
+            this.toolStripStatusLabel1.Spring = true;
+            // 
+            // lblHora
+            // 
+            this.lblHora.AutoSize = false;
+            this.lblHora.BackColor = System.Drawing.SystemColors.Control;
+            this.lblHora.Name = "lblHora";
+            this.lblHora.Size = new System.Drawing.Size(170, 17);
             // 
             // tmrHora
             // 
             this.tmrHora.Enabled = true;
             this.tmrHora.Interval = 1000;
             this.tmrHora.Tick += new System.EventHandler(this.tmrHora_Tick);
+            // 
+            // janelaToolStripMenuItem
+            // 
+            this.janelaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuCascata,
+            this.mnuVertical,
+            this.mnuHorizontal});
+            this.janelaToolStripMenuItem.Name = "janelaToolStripMenuItem";
+            this.janelaToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
+            this.janelaToolStripMenuItem.Text = "&Janela";
+            // 
+            // mnuCascata
+            // 
+            this.mnuCascata.Name = "mnuCascata";
+            this.mnuCascata.Size = new System.Drawing.Size(201, 22);
+            this.mnuCascata.Text = "Cascata";
+            this.mnuCascata.Click += new System.EventHandler(this.mnuCascata_Click);
+            // 
+            // mnuVertical
+            // 
+            this.mnuVertical.Name = "mnuVertical";
+            this.mnuVertical.Size = new System.Drawing.Size(201, 22);
+            this.mnuVertical.Text = "Lado a lado - vertical";
+            this.mnuVertical.Click += new System.EventHandler(this.mnuVertical_Click);
+            // 
+            // mnuHorizontal
+            // 
+            this.mnuHorizontal.Name = "mnuHorizontal";
+            this.mnuHorizontal.Size = new System.Drawing.Size(201, 22);
+            this.mnuHorizontal.Text = "Lado a lado - Horizontal";
+            this.mnuHorizontal.Click += new System.EventHandler(this.mnuHorizontal_Click);
             // 
             // FrmMenu
             // 
@@ -270,5 +306,9 @@
         private System.Windows.Forms.ToolStripButton toolStripButton4;
         private System.Windows.Forms.ToolStripButton btnProduto;
         private System.Windows.Forms.Timer tmrHora;
+        private System.Windows.Forms.ToolStripMenuItem janelaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuCascata;
+        private System.Windows.Forms.ToolStripMenuItem mnuVertical;
+        private System.Windows.Forms.ToolStripMenuItem mnuHorizontal;
     }
 }

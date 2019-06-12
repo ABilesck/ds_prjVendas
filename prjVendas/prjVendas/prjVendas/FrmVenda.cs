@@ -23,11 +23,11 @@ namespace prjVendas
         private void FrmVenda_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'dsVendas.pc_Produto' table. You can move, or remove it, as needed.
-            this.pc_ProdutoTableAdapter.Fill(this.dsVendas.pc_Produto);
+//            this.pc_ProdutoTableAdapter.Fill(this.dsVendas.pc_Produto);
             // TODO: This line of code loads data into the 'dsVendas.pc_Cliente' table. You can move, or remove it, as needed.
-            this.pc_ClienteTableAdapter.Fill(this.dsVendas.pc_Cliente);
+  //          this.pc_ClienteTableAdapter.Fill(this.dsVendas.pc_Cliente);
             // TODO: This line of code loads data into the 'dsVendas.pc_Venda' table. You can move, or remove it, as needed.
-            this.pc_VendaTableAdapter.Fill(this.dsVendas.pc_Venda);
+    //        this.pc_VendaTableAdapter.Fill(this.dsVendas.pc_Venda);
             if (dgvVendas.Rows.Count > 0)
             {
                 dgvVendas.Rows[0].Selected = true;
