@@ -28,6 +28,7 @@ namespace prjVendas
             this.pc_ClienteTableAdapter.Fill(this.dsVendas.pc_Cliente);
             // TODO: This line of code loads data into the 'dsVendas.pc_Venda' table. You can move, or remove it, as needed.
             this.pc_VendaTableAdapter.Fill(this.dsVendas.pc_Venda);
+            pc_ItemVendaTableAdapter.Fill(dsVendas.pc_ItemVenda);
             
         }
         private void habilitaCampos(bool hab)
@@ -156,13 +157,18 @@ namespace prjVendas
                         "Atenção",MessageBoxButtons.YesNo,MessageBoxIcon.Question,
                         MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                     {
-                        pc_ItemVendaTableAdapter.DeleteTodos(Convert.ToInt32(
-                            dgvVendas[0, dgvVendas.CurrentRow.Index].Value.ToString()));
+                        pc_ItemVendaTableAdapter.DeleteTodos(
+                            //Convert.ToInt32(dgvVendas[0, dgvVendas.CurrentRow.Index].Value.ToString())
+                            Convert.ToInt32(((DataRowView)pc_ItemVendaBindingSource.Current).Row["numvenda"].ToString())
+                            );
+
                         pc_VendaTableAdapter.DeleteQuery(Convert.ToInt32(
                             dgvVendas[0,dgvVendas.CurrentRow.Index].Value.ToString()));
-                        FrmVenda_Load(null, null);
+                        
                         MessageBox.Show(null, "Apagado com sucesso!", "Exlusão",
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        FrmVenda_Load(null, null);
                     }
                 }else
                 {
@@ -277,7 +283,7 @@ namespace prjVendas
             operacao = Operacoes.incluirItem;
             habilitaCamposItem(true);
             habilitaBotoesItem(false);
-            //cmbProduto_SelectedIndexChanged(null, null);
+            cmbProduto_SelectedIndexChanged(null, null);
             cmbProduto.Focus();
         }
 
