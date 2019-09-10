@@ -41,6 +41,7 @@
             System.Windows.Forms.Label ieLabel;
             System.Windows.Forms.Label datacadLabel;
             System.Windows.Forms.Label ufLabel;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmFornecedor));
             this.dsVendas = new prjVendas.DsVendas();
             this.pc_fornecedorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pc_fornecedorTableAdapter = new prjVendas.DsVendasTableAdapters.pc_fornecedorTableAdapter();
@@ -547,6 +548,7 @@
             this.Controls.Add(this.txtIe);
             this.Controls.Add(datacadLabel);
             this.Controls.Add(this.dtpDatacad);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmFornecedor";
             this.Text = "FrmFornecedor";
             this.Load += new System.EventHandler(this.FrmFornecedor_Load);

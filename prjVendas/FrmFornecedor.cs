@@ -62,6 +62,18 @@ namespace prjVendas
             utility.HabilitaBotoes(this);
             operacao = Operacao.alterar;
             codigo = Convert.ToInt32(((DataRowView)pc_fornecedorBindingSource.Current).Row["codFor"].ToString());
+            txtRazao.Text = ((DataRowView)pc_fornecedorBindingSource.Current).Row["razao"].ToString();
+            txtFantasia.Text = ((DataRowView)pc_fornecedorBindingSource.Current).Row["fantasia"].ToString();
+            txtEndereco.Text = ((DataRowView)pc_fornecedorBindingSource.Current).Row["endereco"].ToString();
+            txtCidade.Text = ((DataRowView)pc_fornecedorBindingSource.Current).Row["cidade"].ToString();
+            txtBairro.Text = ((DataRowView)pc_fornecedorBindingSource.Current).Row["bairro"].ToString();
+            txtUf.Text = ((DataRowView)pc_fornecedorBindingSource.Current).Row["uf"].ToString().ToUpper();
+            txtCep.Text = ((DataRowView)pc_fornecedorBindingSource.Current).Row["cep"].ToString();
+            txtTelefone.Text = ((DataRowView)pc_fornecedorBindingSource.Current).Row["telefone"].ToString();
+            txtFax.Text = ((DataRowView)pc_fornecedorBindingSource.Current).Row["fax"].ToString();
+            txtCnpj.Text = ((DataRowView)pc_fornecedorBindingSource.Current).Row["cnpj"].ToString();
+            txtIe.Text = ((DataRowView)pc_fornecedorBindingSource.Current).Row["ie"].ToString();
+            dtpDatacad.Value = Convert.ToDateTime(((DataRowView)pc_fornecedorBindingSource.Current).Row["datacad"].ToString());
             txtRazao.Focus();
         }
 
@@ -73,7 +85,7 @@ namespace prjVendas
                 txtRazao.Focus();
                 utility.HabilitaBotoes(this);
                 btnGravar.Enabled = false;
-                btnCancelar.Enabled = false;
+                btnCancelar.Enabled = true;
                 btnPesquisar.Enabled = true;
 
                 MessageBox.Show(null, "Digite a razão social desejada ou" +
@@ -82,8 +94,10 @@ namespace prjVendas
             }
             else
             {
-                pc_fornecedorTableAdapter.FillByRazao(dsVendas.pc_fornecedor, txtRazao.Text);
-                btnCancelar_Click(null, null);
+                pc_fornecedorTableAdapter.FillByRazao(dsVendas.pc_fornecedor, "%" + txtRazao.Text + "%");
+                btnPesquisar.Enabled = false;
+                btnGravar.Enabled = true;
+                //btnCancelar_Click(null, null);
             }
         }
 

@@ -4830,7 +4830,7 @@ namespace prjVendas.DsVendasTableAdapters {
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM pc_Cliente\r\nWHERE        (codCli = @codcli)";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM pc_Cliente\nWHERE        (codCli = @codcli)";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@codcli", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "codCli", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
@@ -4849,9 +4849,9 @@ namespace prjVendas.DsVendasTableAdapters {
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dataNasc", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dataNasc", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE       pc_Cliente\r\nSET                nome = @nome, endereco = @endereco, c" +
-                "idade = @cidade, bairro = @bairro, uf = @uf, cep = @cep, telefone = @telefone, d" +
-                "ataNasc = @dataNasc\r\nWHERE        (codCli = @codcli)";
+            this._adapter.UpdateCommand.CommandText = "UPDATE       pc_Cliente\nSET                nome = @nome, endereco = @endereco, ci" +
+                "dade = @cidade, bairro = @bairro, uf = @uf, cep = @cep, telefone = @telefone, da" +
+                "taNasc = @dataNasc\nWHERE        (codCli = @codcli)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@nome", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "nome", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@endereco", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "endereco", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -4888,9 +4888,9 @@ namespace prjVendas.DsVendasTableAdapters {
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@nome", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "nome", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "INSERT INTO pc_Cliente\r\n                         (nome, endereco, cidade, bairro," +
-                " uf, cep, telefone, dataNasc)\r\nVALUES        (@nome,@endereco,@cidade,@bairro,@u" +
-                "f,@cep,@telefone,@dataNasc)";
+            this._commandCollection[2].CommandText = "INSERT INTO pc_Cliente\n                         (nome, endereco, cidade, bairro, " +
+                "uf, cep, telefone, dataNasc)\nVALUES        (@nome,@endereco,@cidade,@bairro,@uf," +
+                "@cep,@telefone,@dataNasc)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@nome", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "nome", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@endereco", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "endereco", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -5901,8 +5901,8 @@ WHERE        (pc_ItemVenda.numVenda = @numVenda)";
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@descricao", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "descricao", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "INSERT INTO pc_Produto\r\n                         (descricao, quantidade, precoUni" +
-                "t)\r\nVALUES        (@descricao,@quantidade,@precoUnit)";
+            this._commandCollection[2].CommandText = "INSERT INTO pc_Produto\n                         (descricao, quantidade, precoUnit" +
+                ")\nVALUES        (@descricao,@quantidade,@precoUnit)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@descricao", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "descricao", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@quantidade", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "quantidade", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -6782,8 +6782,8 @@ WHERE        (pc_Venda.numVenda = @numVenda)";
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[pc_compra] ([codFor], [dataCompra], [datEntrega], [obs]) VALUE" +
-                "S (@codFor, @dataCompra, @datEntrega, @obs);\r\nSELECT numCompra, codFor, dataComp" +
-                "ra, datEntrega, obs FROM pc_compra WHERE (numCompra = SCOPE_IDENTITY())";
+                "S (@codFor, @dataCompra, @datEntrega, @obs);\nSELECT numCompra, codFor, dataCompr" +
+                "a, datEntrega, obs FROM pc_compra WHERE (numCompra = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@codFor", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "codFor", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dataCompra", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dataCompra", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -7186,15 +7186,14 @@ SELECT numCompra, codFor, dataCompra, datEntrega, obs FROM pc_compra WHERE (numC
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM pc_fornecedor\r\nWHERE        (codFor = @codFor)";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM pc_fornecedor\nWHERE        (codFor = @codFor)";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@codFor", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "codFor", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO pc_fornecedor\r\n                         (razao, fantasia, endereco, c" +
-                "idade, bairro, uf, cep, telefone, fax, cnpj, ie, datacad)\r\nVALUES        (@razao" +
-                ",@fantasia,@endereco,@cidade,@bairro,@uf,@cep,@telefone,@fax,@cnpj,@ie,@datacad)" +
-                "";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO pc_fornecedor\n                         (razao, fantasia, endereco, ci" +
+                "dade, bairro, uf, cep, telefone, fax, cnpj, ie, datacad)\nVALUES        (@razao,@" +
+                "fantasia,@endereco,@cidade,@bairro,@uf,@cep,@telefone,@fax,@cnpj,@ie,@datacad)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@razao", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "razao", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fantasia", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "fantasia", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -7249,8 +7248,8 @@ SELECT codFor, razao, fantasia, endereco, cidade, bairro, uf, cep, telefone, fax
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
             this._commandCollection[1].CommandText = "SELECT        codFor, razao, fantasia, endereco, cidade, bairro, uf, cep, telefon" +
-                "e, fax, cnpj, ie, datacad\r\nFROM            pc_fornecedor\r\nWHERE        (razao LI" +
-                "KE @razao)";
+                "e, fax, cnpj, ie, datacad\n FROM            pc_fornecedor\r\n\nWHERE        (razao L" +
+                "IKE @razao)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@razao", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "razao", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }

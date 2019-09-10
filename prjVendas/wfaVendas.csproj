@@ -85,12 +85,6 @@
     <Compile Include="FrmCadCli.Designer.cs">
       <DependentUpon>FrmCadCli.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmCompra.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmCompra.Designer.cs">
-      <DependentUpon>FrmCompra.cs</DependentUpon>
-    </Compile>
     <Compile Include="FrmFornecedor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,9 +128,6 @@
     <EmbeddedResource Include="FrmCadCli.resx">
       <DependentUpon>FrmCadCli.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmCompra.resx">
-      <DependentUpon>FrmCompra.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FrmFornecedor.resx">
       <DependentUpon>FrmFornecedor.cs</DependentUpon>
     </EmbeddedResource>
@@ -160,6 +151,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="RelClientes.resx">
       <DependentUpon>RelClientes.cs</DependentUpon>
@@ -191,6 +183,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\untitled.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
