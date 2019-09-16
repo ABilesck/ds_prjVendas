@@ -10,29 +10,28 @@ using System.Windows.Forms;
 
 namespace prjVendas
 {
-    public partial class FrmVenda : Form
+    public partial class FrmCompra : Form
     {
         double precoTemp = 0;
         Operacoes operacao;
-
-        public FrmVenda()
+        public FrmCompra()
         {
             InitializeComponent();
         }
-
-        private void FrmVenda_Load(object sender, EventArgs e)
+        private void FrmCompra_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'dsVendas.pc_Produto' table. You can move, or remove it, as needed.
+            pc_itemCompraTableAdapter.Fill(dsVendas.pc_itemCompra);
+            pc_fornecedorTableAdapter.Fill(dsVendas.pc_fornecedor);
+            pc_compraTableAdapter.Fill(dsVendas.pc_compra);
             pc_ProdutoTableAdapter.Fill(dsVendas.pc_Produto);
-            pc_ClienteTableAdapter.Fill(dsVendas.pc_Cliente);
-            pc_VendaTableAdapter.Fill(dsVendas.pc_Venda);
-            pc_ItemVendaTableAdapter.Fill(dsVendas.pc_ItemVenda);
-            
         }
+
         private void habilitaCampos(bool hab)
         {
-            txtNumVenda.Enabled = hab;
-            cmbNome.Enabled = hab;
-            dtpDataVenda.Enabled = hab;
+            txtNumCompra.Enabled = hab;
+            cmbRazao.Enabled = hab;
+            dtpDataCompra.Enabled = hab;
             dtpDataEntrega.Enabled = hab;
             txtObs.Enabled = hab;
         }
@@ -68,12 +67,12 @@ namespace prjVendas
         {
             foreach (Control item in local.Controls)
             {
-                if(item is TextBox)
+                if (item is TextBox)
                 {
                     ((TextBox)item).Clear();
 
-                    if(((TextBox)item).Name == "txtPrecounit" 
-                        || ((TextBox)item).Name == "txtSubTotal" 
+                    if (((TextBox)item).Name == "txtPrecounit"
+                        || ((TextBox)item).Name == "txtSubTotal"
                         || ((TextBox)item).Name == "txtTotal")
                     {
                         ((TextBox)item).Text = "R$ 0,00";
@@ -90,7 +89,7 @@ namespace prjVendas
                     ((MaskedTextBox)item).Clear();
                 }
 
-                if(item is ComboBox)
+                if (item is ComboBox)
                 {
                     if (((ComboBox)item).Items.Count > 0)
                     {
@@ -98,7 +97,7 @@ namespace prjVendas
                     }
                 }
 
-                if(item is DateTimePicker)
+                if (item is DateTimePicker)
                 {
                     ((DateTimePicker)item).Value = DateTime.Now;
                 }
@@ -110,34 +109,35 @@ namespace prjVendas
             operacao = Operacoes.incluir;
             habilitaCampos(true);
             habilitaBotoes(false);
-            txtNumVenda.Enabled = false;
-            cmbNome.Focus();
-
+            txtNumCompra.Enabled = false;
+            cmbRazao.Focus();
         }
 
-        private void dgvVendas_SelectionChanged(object sender, EventArgs e)
+        private void dgvCompra_SelectionChanged(object sender, EventArgs e)
         {
             try
             {
 
-                if(dgvVendas.RowCount > 0)
+                if (dgvCompra.RowCount > 0)
                 {
-                    pc_ItemVendaTableAdapter.FillByNumVenda(dsVendas.pc_ItemVenda,
-                        Convert.ToInt32(dgvVendas[0, dgvVendas.CurrentRow.Index].Value.ToString()));
+                    pc_itemCompraTableAdapter.FillByNumCompra(dsVendas.pc_itemCompra,
+                        Convert.ToInt32(dgvCompra[0, dgvCompra.CurrentRow.Index].Value.ToString()));
                 }
-                if(dgvItemVendas.RowCount > 0)
+                if (dgvItemCompra.RowCount > 0)
                 {
-                    double total = (Double)pc_ItemVendaTableAdapter.TotalVenda(
-                        Convert.ToInt32(dgvVendas[0, dgvVendas.CurrentRow.Index].Value.ToString()));
+                    double total = (Double)pc_itemCompraTableAdapter.TotalCompra(
+                        Convert.ToInt32(dgvCompra[0, dgvCompra.CurrentRow.Index].Value.ToString()));
                     txtTotal.Text = total.ToString("R$ #,###,##0.00");
-                }else
+                }
+                else
                 {
                     txtTotal.Text = "R$ 0.00";
                 }
 
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
-                
+
             }
         }
 
@@ -146,28 +146,30 @@ namespace prjVendas
             try
             {
 
-                if(dgvVendas.SelectedRows.Count > 0)
+                if (dgvCompra.SelectedRows.Count > 0)
                 {
                     DialogResult drExcluir = MessageBox.Show("Deseja excluir a venda selecionada?", "Atenção", MessageBoxButtons.YesNo);
-                        if (drExcluir == DialogResult.Yes)
+                    if (drExcluir == DialogResult.Yes)
                     {
-                        int codigo = Convert.ToInt32(dgvVendas[0, dgvVendas.CurrentRow.Index].Value.ToString());
+                        int codigo = Convert.ToInt32(dgvCompra[0, dgvCompra.CurrentRow.Index].Value.ToString());
 
-                        pc_ItemVendaTableAdapter.DeleteTodos(codigo);
+                        pc_itemCompraTableAdapter.DeleteTodos(codigo);
                         btnCancelar_Click(null, null);
-                        pc_VendaTableAdapter.DeleteQuery(codigo);
+                        pc_compraTableAdapter.Delete(codigo);
 
-                        FrmVenda_Load(null, null);
+                        FrmCompra_Load(null, null);
                     }
-                }else
+                }
+                else
                 {
                     MessageBox.Show(null, "Selecione uma venda primeiro.", "Erro ao excluir a venda",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
-                MessageBox.Show(null, "Ocorreu um erro: \n" + ex.Message, "Erro ao excluir a venda",
+                MessageBox.Show(null, "Ocorreu um erro ao excluir: \n" + ex.Message, "Erro ao excluir a venda",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -179,27 +181,29 @@ namespace prjVendas
                 if (operacao == Operacoes.incluir)
                 {
 
-                    pc_VendaTableAdapter.InsertQuery(
-                        (int)cmbNome.SelectedValue,
-                        dtpDataVenda.Value,
+                    pc_compraTableAdapter.Insert(
+                        (int)cmbRazao.SelectedValue,
+                        dtpDataCompra.Value,
                         dtpDataEntrega.Value,
                         txtObs.Text);
-                    MessageBox.Show(null, "Incluido com sucesso!","Inclusão",
+                    MessageBox.Show(null, "Incluido com sucesso!", "Inclusão",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    
+
 
                 }
-                if(operacao == Operacoes.editar)
+                if (operacao == Operacoes.editar)
                 {
-                    pc_VendaTableAdapter.UpdateQuery((Int32)cmbNome.SelectedValue, dtpDataVenda.Value,
-                        dtpDataEntrega.Value, txtObs.Text, Convert.ToInt32(txtNumVenda.Text));
+                    pc_compraTableAdapter.UpdateQuery((int)cmbRazao.SelectedValue, dtpDataCompra.Value,
+                        dtpDataEntrega.Value, txtObs.Text, Convert.ToInt32(txtNumCompra.Text));
                 }
 
                 btnCancelar_Click(null, null);
-                
-            }catch(Exception ex)
+                FrmCompra_Load(null, null);
+
+            }
+            catch (Exception ex)
             {
-                MessageBox.Show(null, "Ocorreu um erro: \n" + ex.Message, "Erro ao gravar",
+                MessageBox.Show(null, "Ocorreu um erro ao gravar: \n" + ex.Message, "Erro ao gravar",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -207,10 +211,10 @@ namespace prjVendas
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             limpaCampos(this);
-            limpaCampos(grbItemVenda);
+            limpaCampos(grbItemCompra);
             habilitaCampos(false);
             habilitaBotoes(true);
-            FrmVenda_Load(null, null);
+            FrmCompra_Load(null, null);
         }
 
         private void btnSair_Click(object sender, EventArgs e)
@@ -220,28 +224,29 @@ namespace prjVendas
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
-            if(dgvVendas.SelectedRows.Count > 0)
+            if (dgvCompra.SelectedRows.Count > 0)
             {
                 operacao = Operacoes.editar;
                 habilitaBotoes(false);
                 habilitaCampos(true);
-                txtNumVenda.Enabled = false;
-                var venda_atual = (pc_VendaBindingSource.Current as DataRowView).Row as DsVendas.pc_VendaRow;
-                
-                txtNumVenda.Text =
-                    dgvVendas[0, dgvVendas.CurrentRow.Index].Value.ToString();
-                cmbNome.SelectedValue = venda_atual.codCli;
+                txtNumCompra.Enabled = false;
+                var venda_atual = (pc_compraBindingSource.Current as DataRowView).Row as DsVendas.pc_VendaRow;
+
+                txtNumCompra.Text =
+                    dgvCompra[0, dgvCompra.CurrentRow.Index].Value.ToString();
+                cmbRazao.SelectedValue = venda_atual.codCli;
                 /*cmbNome.SelectedValue = Convert.ToInt32(
                     dgvVendas[1, dgvVendas.CurrentRow.Index].Value.ToString());
                 */
-                dtpDataVenda.Value = Convert.ToDateTime(
-                    dgvVendas[3, dgvVendas.CurrentRow.Index].Value.ToString());
+                dtpDataCompra.Value = Convert.ToDateTime(
+                    dgvCompra[3, dgvCompra.CurrentRow.Index].Value.ToString());
                 dtpDataEntrega.Value = Convert.ToDateTime(
-                    dgvVendas[4, dgvVendas.CurrentRow.Index].Value.ToString());
-                txtObs.Text = dgvVendas[5, dgvVendas.CurrentRow.Index].Value.ToString();
-                cmbNome.Focus();
+                    dgvCompra[4, dgvCompra.CurrentRow.Index].Value.ToString());
+                txtObs.Text = dgvCompra[5, dgvCompra.CurrentRow.Index].Value.ToString();
+                cmbRazao.Focus();
 
-            }else
+            }
+            else
             {
                 MessageBox.Show(null, "Selecione uma venda primeiro!", "Erro",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -250,21 +255,22 @@ namespace prjVendas
 
         private void btnPesquisar_Click(object sender, EventArgs e)
         {
-            if(!cmbNome.Enabled)
+            if (!cmbRazao.Enabled)
             {
-                cmbNome.Enabled = true;
-                cmbNome.Focus();
+                cmbRazao.Enabled = true;
+                cmbRazao.Focus();
                 habilitaBotoes(false);
                 btnPesquisar.Enabled = true;
                 btnGravar.Enabled = false;
                 btnCancelar.Enabled = false;
 
                 MessageBox.Show(null, "Digite o nome do cliente desejado.", "Pesquisa",
-                    MessageBoxButtons.OK,MessageBoxIcon.Information);
-            }else
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
             {
-                pc_VendaTableAdapter.FillByNome(this.dsVendas.pc_Venda,
-                    "%" + cmbNome.Text + "%");
+                pc_compraTableAdapter.FillByRazao(dsVendas.pc_compra,
+                    "%" + cmbRazao.Text + "%");
                 btnCancelar.Enabled = true;
             }
         }
@@ -294,7 +300,7 @@ namespace prjVendas
 
         private void nudQuantidade_ValueChanged(object sender, EventArgs e)
         {
-            double subTotal = (Int32)nudQuantidade.Value * precoTemp;
+            double subTotal = (int)nudQuantidade.Value * precoTemp;
             txtSubTotal.Text = subTotal.ToString("R$ #,###,##0.00");
         }
 
@@ -303,22 +309,22 @@ namespace prjVendas
             try
             {
 
-                if (dgvItemVendas.SelectedRows.Count > 0)
+                if (dgvItemCompra.SelectedRows.Count > 0)
                 {
                     if (MessageBox.Show(null, "Deseja excluir o produto selecionado?",
-                        "Atenção",MessageBoxButtons.YesNo, MessageBoxIcon.Question) ==
+                        "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Question) ==
                         DialogResult.Yes)
                     {
-                        pc_ItemVendaTableAdapter.DeleteQuery(
-                            Convert.ToInt32(dgvVendas[0, dgvVendas.CurrentRow.Index].
+                        pc_itemCompraTableAdapter.Delete(
+                            Convert.ToInt32(dgvCompra[0, dgvCompra.CurrentRow.Index].
                             Value.ToString()),
-                            Convert.ToInt32(dgvItemVendas[0, dgvItemVendas.CurrentRow.Index].
+                            Convert.ToInt32(dgvItemCompra[0, dgvItemCompra.CurrentRow.Index].
                             Value.ToString())
                             );
 
                         //dgvVendas_SelectionChanged(null, null);
-                        MessageBox.Show("Apagado com sucesso!","Exclusão",
-                            MessageBoxButtons.OK,MessageBoxIcon.Information);
+                        MessageBox.Show("Apagado com sucesso!", "Exclusão",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 else
@@ -326,13 +332,13 @@ namespace prjVendas
                     MessageBox.Show(null, "Selecione um produto primeiro!", "Erro ao " +
                         "Excluir", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                dgvVendas_SelectionChanged(null, null);
+                dgvCompra_SelectionChanged(null, null);
                 btnCancelarItem_Click(null, null);
             }
             catch (Exception ex)
             {
 
-                MessageBox.Show(null, "Ocorreu um erro ao excluir um item: \n" + ex.Message, 
+                MessageBox.Show(null, "Ocorreu um erro ao excluir um item: \n" + ex.Message,
                     "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
@@ -340,17 +346,17 @@ namespace prjVendas
 
         private void btnAlterarItem_Click(object sender, EventArgs e)
         {
-            if(dgvItemVendas.SelectedRows.Count > 0)
+            if (dgvItemCompra.SelectedRows.Count > 0)
             {
                 operacao = Operacoes.editarItem;
                 habilitaBotoesItem(false);
                 habilitaCamposItem(true);
                 cmbProduto.Text =
-                    dgvItemVendas[1, dgvItemVendas.CurrentRow.Index].Value.ToString();
+                    dgvItemCompra[1, dgvItemCompra.CurrentRow.Index].Value.ToString();
 
                 cmbProduto_SelectedIndexChanged(null, null);
                 nudQuantidade.Value = Convert.ToInt32(
-                    dgvItemVendas[2, dgvItemVendas.CurrentRow.Index].Value.ToString());
+                    dgvItemCompra[2, dgvItemCompra.CurrentRow.Index].Value.ToString());
 
                 cmbProduto.Focus();
             }
@@ -366,7 +372,7 @@ namespace prjVendas
             try
             {
 
-                if (dgvItemVendas.RowCount > 0)
+                if (dgvItemCompra.RowCount > 0)
                 {
                     if (!cmbProduto.Enabled)
                     {
@@ -375,17 +381,17 @@ namespace prjVendas
                         habilitaBotoesItem(false);
                         btnPesquisarItem.Enabled = true;
                         btnCancelarItem.Enabled = false;
-                        MessageBox.Show(null, "Digite o nome do produto desejado:", 
+                        MessageBox.Show(null, "Digite o nome do produto desejado:",
                             "Pesquisar", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }else
+                    }
+                    else
                     {
-                        
-                        pc_ItemVendaTableAdapter.FillByDescricao(
-                            dsVendas.pc_ItemVenda,
+
+                        pc_itemCompraTableAdapter.FillByDescricao(dsVendas.pc_itemCompra,
                             Convert.ToInt32(
-                                dgvVendas[0, dgvItemVendas.CurrentRow.Index].Value.ToString()),
+                                dgvCompra[0, dgvItemCompra.CurrentRow.Index].Value.ToString()),
                                 "%" + cmbProduto.Text + "%");
-                                
+
                     }
                 }
                 else
@@ -404,10 +410,10 @@ namespace prjVendas
 
         private void btnCancelarItem_Click(object sender, EventArgs e)
         {
-            limpaCampos(grbItemVenda);
+            limpaCampos(grbItemCompra);
             habilitaCamposItem(false);
             habilitaBotoesItem(true);
-            dgvVendas_SelectionChanged(null, null);
+            dgvCompra_SelectionChanged(null, null);
         }
 
         private void btnGravarItem_Click(object sender, EventArgs e)
@@ -415,10 +421,10 @@ namespace prjVendas
             try
             {
 
-                if(operacao == Operacoes.incluirItem)
+                if (operacao == Operacoes.incluirItem)
                 {
-                    pc_ItemVendaTableAdapter.InsertQuery(Convert.ToInt32(
-                        dgvVendas[0, dgvVendas.CurrentRow.Index].Value.ToString()),
+                    pc_itemCompraTableAdapter.Insert(Convert.ToInt32(
+                        dgvCompra[0, dgvCompra.CurrentRow.Index].Value.ToString()),
                         (int)cmbProduto.SelectedValue,
                         (int)nudQuantidade.Value,
                         precoTemp);
@@ -426,18 +432,19 @@ namespace prjVendas
                     MessageBox.Show(null, "Inserido com sucesso!", "Inserção",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                }else if(operacao == Operacoes.editarItem)
+                }
+                else if (operacao == Operacoes.editarItem)
                 {
-                    pc_ItemVendaTableAdapter.UpdateQuery(
+                    pc_itemCompraTableAdapter.UpdateQuery(
 
                         (Int32)cmbProduto.SelectedValue,
                         (Int32)nudQuantidade.Value,
                         precoTemp,
                         Convert.ToInt32(
-                            dgvVendas[0, dgvVendas.CurrentRow.Index].Value.ToString()
+                            dgvCompra[0, dgvCompra.CurrentRow.Index].Value.ToString()
                             ),
                         Convert.ToInt32(
-                            dgvItemVendas[0, dgvItemVendas.CurrentRow.Index].Value.ToString()
+                            dgvItemCompra[0, dgvItemCompra.CurrentRow.Index].Value.ToString()
                             )
                         );
                     MessageBox.Show(null, "Alterado com sucesso", "Alteração",
@@ -445,7 +452,7 @@ namespace prjVendas
                 }
 
                 btnCancelarItem_Click(null, null);
-                dgvVendas_SelectionChanged(null, null);
+                dgvCompra_SelectionChanged(null, null);
 
             }
             catch (Exception ex)
@@ -457,14 +464,7 @@ namespace prjVendas
 
         private void btnTodos_Click(object sender, EventArgs e)
         {
-            FrmVenda_Load(null, null);
+            FrmCompra_Load(null, null);
         }
-    }
-    public enum Operacoes
-    {
-        incluir,
-        editar,
-        incluirItem,
-        editarItem
     }
 }

@@ -85,6 +85,12 @@
     <Compile Include="FrmCadCli.Designer.cs">
       <DependentUpon>FrmCadCli.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmCompra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCompra.Designer.cs">
+      <DependentUpon>FrmCompra.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmFornecedor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +139,9 @@
     <Compile Include="Utility.cs" />
     <EmbeddedResource Include="FrmCadCli.resx">
       <DependentUpon>FrmCadCli.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCompra.resx">
+      <DependentUpon>FrmCompra.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmFornecedor.resx">
       <DependentUpon>FrmFornecedor.cs</DependentUpon>

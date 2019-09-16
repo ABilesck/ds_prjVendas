@@ -33,6 +33,7 @@
             System.Windows.Forms.Label descricaoLabel;
             System.Windows.Forms.Label quantidadeLabel;
             System.Windows.Forms.Label precoUnitLabel;
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmProduto));
             this.dsVendas = new prjVendas.DsVendas();
             this.pc_ProdutoBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -50,7 +51,6 @@
             this.btnIncluir = new System.Windows.Forms.Button();
             this.txtPrecoUnit = new System.Windows.Forms.MaskedTextBox();
             this.dgvProdutos = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -118,6 +118,9 @@
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.pc_ClienteTableAdapter = null;
+            this.tableAdapterManager.pc_compraTableAdapter = null;
+            this.tableAdapterManager.pc_fornecedorTableAdapter = null;
+            this.tableAdapterManager.pc_itemCompraTableAdapter = null;
             this.tableAdapterManager.pc_ItemVendaTableAdapter = null;
             this.tableAdapterManager.pc_ProdutoTableAdapter = this.pc_ProdutoTableAdapter;
             this.tableAdapterManager.pc_VendaTableAdapter = null;
@@ -222,6 +225,7 @@
             // 
             this.txtPrecoUnit.Enabled = false;
             this.txtPrecoUnit.Location = new System.Drawing.Point(350, 79);
+            this.txtPrecoUnit.Mask = "$ 9,999.00";
             this.txtPrecoUnit.Name = "txtPrecoUnit";
             this.txtPrecoUnit.Size = new System.Drawing.Size(120, 20);
             this.txtPrecoUnit.TabIndex = 27;
@@ -233,7 +237,6 @@
             this.dgvProdutos.AutoGenerateColumns = false;
             this.dgvProdutos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProdutos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4});
@@ -246,15 +249,9 @@
             this.dgvProdutos.Size = new System.Drawing.Size(451, 220);
             this.dgvProdutos.TabIndex = 27;
             // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "codPro";
-            this.dataGridViewTextBoxColumn1.HeaderText = "codPro";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
             // dataGridViewTextBoxColumn2
             // 
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewTextBoxColumn2.DataPropertyName = "descricao";
             this.dataGridViewTextBoxColumn2.HeaderText = "descricao";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
@@ -270,6 +267,8 @@
             // dataGridViewTextBoxColumn4
             // 
             this.dataGridViewTextBoxColumn4.DataPropertyName = "precoUnit";
+            dataGridViewCellStyle1.NullValue = null;
+            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewTextBoxColumn4.HeaderText = "precoUnit";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             this.dataGridViewTextBoxColumn4.ReadOnly = true;
@@ -326,7 +325,6 @@
         private System.Windows.Forms.Button btnIncluir;
         private System.Windows.Forms.MaskedTextBox txtPrecoUnit;
         private System.Windows.Forms.DataGridView dgvProdutos;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;

@@ -49,15 +49,15 @@
             this.btnCadCliente = new System.Windows.Forms.ToolStripButton();
             this.btnProduto = new System.Windows.Forms.ToolStripButton();
             this.btnVenda = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbFornecedor = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblHora = new System.Windows.Forms.ToolStripStatusLabel();
             this.tmrHora = new System.Windows.Forms.Timer(this.components);
+            this.tsbCompra = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuFecharTodos = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -70,6 +70,7 @@
             this.relatórioToolStripMenuItem,
             this.janelaToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.MdiWindowListItem = this.janelaToolStripMenuItem;
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
             this.menuStrip1.TabIndex = 0;
@@ -123,6 +124,7 @@
             // 
             // mnuCompra
             // 
+            this.mnuCompra.Image = ((System.Drawing.Image)(resources.GetObject("mnuCompra.Image")));
             this.mnuCompra.Name = "mnuCompra";
             this.mnuCompra.Size = new System.Drawing.Size(211, 22);
             this.mnuCompra.Text = "Cadastro de Compras";
@@ -158,7 +160,9 @@
             this.janelaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuCascata,
             this.mnuVertical,
-            this.mnuHorizontal});
+            this.mnuHorizontal,
+            this.toolStripSeparator4,
+            this.mnuFecharTodos});
             this.janelaToolStripMenuItem.Name = "janelaToolStripMenuItem";
             this.janelaToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
             this.janelaToolStripMenuItem.Text = "&Janela";
@@ -191,10 +195,8 @@
             this.btnProduto,
             this.btnVenda,
             this.tsbFornecedor,
-            this.toolStripSeparator2,
-            this.toolStripDropDownButton1,
-            this.toolStripSeparator3,
-            this.toolStripButton4});
+            this.tsbCompra,
+            this.toolStripSeparator2});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(800, 25);
@@ -208,7 +210,7 @@
             this.btnCadCliente.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnCadCliente.Name = "btnCadCliente";
             this.btnCadCliente.Size = new System.Drawing.Size(23, 22);
-            this.btnCadCliente.Text = "toolStripButton1";
+            this.btnCadCliente.Text = "Cliente";
             this.btnCadCliente.Click += new System.EventHandler(this.btnCadCliente_Click);
             // 
             // btnProduto
@@ -218,7 +220,7 @@
             this.btnProduto.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnProduto.Name = "btnProduto";
             this.btnProduto.Size = new System.Drawing.Size(23, 22);
-            this.btnProduto.Text = "toolStripButton1";
+            this.btnProduto.Text = "Produto";
             this.btnProduto.Click += new System.EventHandler(this.btnProduto_Click);
             // 
             // btnVenda
@@ -228,27 +230,8 @@
             this.btnVenda.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnVenda.Name = "btnVenda";
             this.btnVenda.Size = new System.Drawing.Size(23, 22);
-            this.btnVenda.Text = "toolStripButton2";
+            this.btnVenda.Text = "Venda";
             this.btnVenda.Click += new System.EventHandler(this.btnVenda_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripDropDownButton1
-            // 
-            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
-            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(29, 22);
-            this.toolStripDropDownButton1.Text = "toolStripDropDownButton1";
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
             // tsbFornecedor
             // 
@@ -257,17 +240,13 @@
             this.tsbFornecedor.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbFornecedor.Name = "tsbFornecedor";
             this.tsbFornecedor.Size = new System.Drawing.Size(23, 22);
-            this.tsbFornecedor.Text = "Fornecedores";
+            this.tsbFornecedor.Text = "Fornecedor";
             this.tsbFornecedor.Click += new System.EventHandler(this.tsbFornecedor_Click);
             // 
-            // toolStripButton4
+            // toolStripSeparator2
             // 
-            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
-            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton4.Text = "toolStripButton4";
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // statusStrip1
             // 
@@ -299,6 +278,28 @@
             this.tmrHora.Enabled = true;
             this.tmrHora.Interval = 1000;
             this.tmrHora.Tick += new System.EventHandler(this.tmrHora_Tick);
+            // 
+            // tsbCompra
+            // 
+            this.tsbCompra.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbCompra.Image = ((System.Drawing.Image)(resources.GetObject("tsbCompra.Image")));
+            this.tsbCompra.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbCompra.Name = "tsbCompra";
+            this.tsbCompra.Size = new System.Drawing.Size(23, 22);
+            this.tsbCompra.Text = "Compra";
+            this.tsbCompra.Click += new System.EventHandler(this.tsbCompra_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(198, 6);
+            // 
+            // mnuFecharTodos
+            // 
+            this.mnuFecharTodos.Name = "mnuFecharTodos";
+            this.mnuFecharTodos.Size = new System.Drawing.Size(201, 22);
+            this.mnuFecharTodos.Text = "Fechar Todos";
+            this.mnuFecharTodos.Click += new System.EventHandler(this.mnuFecharTodos_Click);
             // 
             // FrmMenu
             // 
@@ -343,10 +344,7 @@
         private System.Windows.Forms.ToolStripButton btnCadCliente;
         private System.Windows.Forms.ToolStripButton btnVenda;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton tsbFornecedor;
-        private System.Windows.Forms.ToolStripButton toolStripButton4;
         private System.Windows.Forms.ToolStripButton btnProduto;
         private System.Windows.Forms.Timer tmrHora;
         private System.Windows.Forms.ToolStripMenuItem janelaToolStripMenuItem;
@@ -357,5 +355,8 @@
         private System.Windows.Forms.ToolStripMenuItem mnuCompra;
         private System.Windows.Forms.ToolStripMenuItem relatórioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mnuRelatorioCliente;
+        private System.Windows.Forms.ToolStripButton tsbCompra;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem mnuFecharTodos;
     }
 }

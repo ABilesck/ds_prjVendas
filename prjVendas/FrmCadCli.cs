@@ -22,7 +22,7 @@ namespace prjVendas
         private void FrmCadClientes_Load(object sender, EventArgs e)
         {
             // this.pc_ClienteTableAdapter.Fill(this.dsVendas.pc_Cliente);
-            this.pc_ClienteTableAdapter.Fill(this.dsVendas.pc_Cliente);
+            pc_ClienteTableAdapter.Fill(dsVendas.pc_Cliente);
         }
 
         private void BtnSair_Click(object sender, EventArgs e)

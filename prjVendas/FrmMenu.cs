@@ -130,12 +130,35 @@ namespace prjVendas
 
         private void mnuCompra_Click(object sender, EventArgs e)
         {
-
+            foreach (Form item in MdiChildren)
+            {
+                if(item is FrmCompra)
+                {
+                    item.Focus();
+                    return;
+                }
+            }
+            FrmCompra frmCompra = new FrmCompra();
+            frmCompra.MdiParent = this;
+            frmCompra.Show();
         }
 
         private void tsbFornecedor_Click(object sender, EventArgs e)
         {
             mnuFornecedor_Click(null, null);
+        }
+
+        private void tsbCompra_Click(object sender, EventArgs e)
+        {
+            mnuCompra_Click(null, null);
+        }
+
+        private void mnuFecharTodos_Click(object sender, EventArgs e)
+        {
+            foreach (Form item in MdiChildren)
+            {
+                item.Close();
+            }
         }
     }
 }

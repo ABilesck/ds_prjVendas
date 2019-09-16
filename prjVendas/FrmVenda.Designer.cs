@@ -32,6 +32,7 @@
             System.Windows.Forms.Label descricaoLabel;
             System.Windows.Forms.Label subtotalLabel;
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmVenda));
             this.dsVendas = new prjVendas.DsVendas();
             this.pc_VendaBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -52,11 +53,11 @@
             this.txtObs = new System.Windows.Forms.RichTextBox();
             this.btnTodos = new System.Windows.Forms.Button();
             this.grbItemVenda = new System.Windows.Forms.GroupBox();
+            this.pcProdutoBindingSource3 = new System.Windows.Forms.BindingSource(this.components);
             this.txtTotal = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.nudQuantidade = new System.Windows.Forms.NumericUpDown();
             this.txtPrecoUnit = new System.Windows.Forms.TextBox();
-            this.pcProdutoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.txtSubTotal = new System.Windows.Forms.TextBox();
             this.btnCancelarItem = new System.Windows.Forms.Button();
             this.btnGravarItem = new System.Windows.Forms.Button();
@@ -64,6 +65,8 @@
             this.btnAlterarItem = new System.Windows.Forms.Button();
             this.btnExcluirItem = new System.Windows.Forms.Button();
             this.btnIncluirItem = new System.Windows.Forms.Button();
+            this.pcProdutoBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.pcProdutoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.pcProdutoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pc_ItemVendaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pc_ItemVendaTableAdapter = new prjVendas.DsVendasTableAdapters.pc_ItemVendaTableAdapter();
@@ -79,15 +82,15 @@
             this.pcClienteBindingSource5 = new System.Windows.Forms.BindingSource(this.components);
             this.dgvVendas = new System.Windows.Forms.DataGridView();
             this.dgvItemVendas = new System.Windows.Forms.DataGridView();
-            this.cmbNome = new System.Windows.Forms.ComboBox();
-            this.pcClienteBindingSource9 = new System.Windows.Forms.BindingSource(this.components);
-            this.cmbProduto = new System.Windows.Forms.ComboBox();
-            this.pcProdutoBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmbNome = new System.Windows.Forms.ComboBox();
+            this.pcClienteBindingSource9 = new System.Windows.Forms.BindingSource(this.components);
+            this.cmbProduto = new System.Windows.Forms.ComboBox();
+            this.pcProdutoBindingSource4 = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -108,7 +111,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pcClienteBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcClienteBindingSource)).BeginInit();
             this.grbItemVenda.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pcProdutoBindingSource3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudQuantidade)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcProdutoBindingSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcProdutoBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcProdutoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pc_ItemVendaBindingSource)).BeginInit();
@@ -123,7 +128,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvVendas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItemVendas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcClienteBindingSource9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pcProdutoBindingSource2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcProdutoBindingSource4)).BeginInit();
             this.SuspendLayout();
             // 
             // numVendaLabel
@@ -385,6 +390,11 @@
             this.grbItemVenda.TabStop = false;
             this.grbItemVenda.Text = "Itens da Venda";
             // 
+            // pcProdutoBindingSource3
+            // 
+            this.pcProdutoBindingSource3.DataMember = "pc_Produto";
+            this.pcProdutoBindingSource3.DataSource = this.dsVendas;
+            // 
             // txtTotal
             // 
             this.txtTotal.Enabled = false;
@@ -422,11 +432,6 @@
             this.txtPrecoUnit.ReadOnly = true;
             this.txtPrecoUnit.Size = new System.Drawing.Size(87, 20);
             this.txtPrecoUnit.TabIndex = 31;
-            // 
-            // pcProdutoBindingSource1
-            // 
-            this.pcProdutoBindingSource1.DataMember = "pc_Produto";
-            this.pcProdutoBindingSource1.DataSource = this.dsVendas;
             // 
             // txtSubTotal
             // 
@@ -498,6 +503,16 @@
             this.btnIncluirItem.Text = "&Incluir";
             this.btnIncluirItem.UseVisualStyleBackColor = true;
             this.btnIncluirItem.Click += new System.EventHandler(this.btnIncluirItem_Click);
+            // 
+            // pcProdutoBindingSource2
+            // 
+            this.pcProdutoBindingSource2.DataMember = "pc_Produto";
+            this.pcProdutoBindingSource2.DataSource = this.dsVendas;
+            // 
+            // pcProdutoBindingSource1
+            // 
+            this.pcProdutoBindingSource1.DataMember = "pc_Produto";
+            this.pcProdutoBindingSource1.DataSource = this.dsVendas;
             // 
             // pcProdutoBindingSource
             // 
@@ -607,41 +622,6 @@
             this.dgvItemVendas.Size = new System.Drawing.Size(646, 220);
             this.dgvItemVendas.TabIndex = 33;
             // 
-            // cmbNome
-            // 
-            this.cmbNome.DataSource = this.pcClienteBindingSource9;
-            this.cmbNome.DisplayMember = "nome";
-            this.cmbNome.Enabled = false;
-            this.cmbNome.FormattingEnabled = true;
-            this.cmbNome.Location = new System.Drawing.Point(236, 57);
-            this.cmbNome.Name = "cmbNome";
-            this.cmbNome.Size = new System.Drawing.Size(222, 21);
-            this.cmbNome.TabIndex = 35;
-            this.cmbNome.ValueMember = "codCli";
-            // 
-            // pcClienteBindingSource9
-            // 
-            this.pcClienteBindingSource9.DataMember = "pc_Cliente";
-            this.pcClienteBindingSource9.DataSource = this.dsVendas;
-            // 
-            // cmbProduto
-            // 
-            this.cmbProduto.DataSource = this.pcProdutoBindingSource2;
-            this.cmbProduto.DisplayMember = "descricao";
-            this.cmbProduto.Enabled = false;
-            this.cmbProduto.FormattingEnabled = true;
-            this.cmbProduto.Location = new System.Drawing.Point(26, 96);
-            this.cmbProduto.Name = "cmbProduto";
-            this.cmbProduto.Size = new System.Drawing.Size(207, 21);
-            this.cmbProduto.TabIndex = 38;
-            this.cmbProduto.ValueMember = "codPro";
-            this.cmbProduto.SelectedIndexChanged += new System.EventHandler(this.cmbProduto_SelectedIndexChanged);
-            // 
-            // pcProdutoBindingSource2
-            // 
-            this.pcProdutoBindingSource2.DataMember = "pc_Produto";
-            this.pcProdutoBindingSource2.DataSource = this.dsVendas;
-            // 
             // dataGridViewTextBoxColumn8
             // 
             this.dataGridViewTextBoxColumn8.DataPropertyName = "codPro";
@@ -681,6 +661,40 @@
             this.dataGridViewTextBoxColumn12.ReadOnly = true;
             this.dataGridViewTextBoxColumn12.Width = 120;
             // 
+            // cmbNome
+            // 
+            this.cmbNome.DataSource = this.pcClienteBindingSource9;
+            this.cmbNome.DisplayMember = "nome";
+            this.cmbNome.Enabled = false;
+            this.cmbNome.FormattingEnabled = true;
+            this.cmbNome.Location = new System.Drawing.Point(236, 57);
+            this.cmbNome.Name = "cmbNome";
+            this.cmbNome.Size = new System.Drawing.Size(222, 21);
+            this.cmbNome.TabIndex = 35;
+            this.cmbNome.ValueMember = "codCli";
+            // 
+            // pcClienteBindingSource9
+            // 
+            this.pcClienteBindingSource9.DataMember = "pc_Cliente";
+            this.pcClienteBindingSource9.DataSource = this.dsVendas;
+            // 
+            // cmbProduto
+            // 
+            this.cmbProduto.DataSource = this.pcProdutoBindingSource4;
+            this.cmbProduto.DisplayMember = "descricao";
+            this.cmbProduto.Enabled = false;
+            this.cmbProduto.FormattingEnabled = true;
+            this.cmbProduto.Location = new System.Drawing.Point(26, 97);
+            this.cmbProduto.Name = "cmbProduto";
+            this.cmbProduto.Size = new System.Drawing.Size(209, 21);
+            this.cmbProduto.TabIndex = 38;
+            this.cmbProduto.ValueMember = "codPro";
+            // 
+            // pcProdutoBindingSource4
+            // 
+            this.pcProdutoBindingSource4.DataMember = "pc_Produto";
+            this.pcProdutoBindingSource4.DataSource = this.dsVendas;
+            // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.DataPropertyName = "numVenda";
@@ -700,6 +714,8 @@
             // dataGridViewTextBoxColumn3
             // 
             this.dataGridViewTextBoxColumn3.DataPropertyName = "dataEntrega";
+            dataGridViewCellStyle2.Format = "dd/MM/yyyy";
+            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewTextBoxColumn3.HeaderText = "dataEntrega";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.ReadOnly = true;
@@ -762,7 +778,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pcClienteBindingSource)).EndInit();
             this.grbItemVenda.ResumeLayout(false);
             this.grbItemVenda.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pcProdutoBindingSource3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudQuantidade)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcProdutoBindingSource2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcProdutoBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcProdutoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pc_ItemVendaBindingSource)).EndInit();
@@ -777,7 +795,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvVendas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItemVendas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcClienteBindingSource9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pcProdutoBindingSource2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcProdutoBindingSource4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -833,13 +851,15 @@
         private System.Windows.Forms.DataGridView dgvItemVendas;
         private System.Windows.Forms.ComboBox cmbNome;
         private System.Windows.Forms.BindingSource pcClienteBindingSource9;
-        private System.Windows.Forms.ComboBox cmbProduto;
         private System.Windows.Forms.BindingSource pcProdutoBindingSource2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
+        private System.Windows.Forms.BindingSource pcProdutoBindingSource3;
+        private System.Windows.Forms.ComboBox cmbProduto;
+        private System.Windows.Forms.BindingSource pcProdutoBindingSource4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;

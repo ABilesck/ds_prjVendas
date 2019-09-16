@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,7 @@ namespace prjVendas
     {
         bool incluir = false;
         bool alterar = false;
-
+        int codigo;
         public FrmProduto()
         {
             InitializeComponent();
@@ -80,6 +81,7 @@ namespace prjVendas
         {
             try
             {
+                txtPrecoUnit.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
                 if (incluir)
                 {
                     pc_ProdutoTableAdapter.InsertQuery(
@@ -96,7 +98,7 @@ namespace prjVendas
                         txtDescricao.Text,
                         Convert.ToInt32(nudQuantidade.Value),
                         Convert.ToDouble(txtPrecoUnit.Text),
-                        Convert.ToInt32(txtCodPro.Text)
+                        codigo
                         );
                     MessageBox.Show("Alterado com sucesso!", "Alterar",
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -133,7 +135,8 @@ namespace prjVendas
                         MessageBoxDefaultButton.Button2) == System.Windows.Forms.DialogResult.Yes)
                     {
                         pc_ProdutoTableAdapter.Delete(Convert.ToInt32(
-                            dgvProdutos[0, dgvProdutos.CurrentRow.Index].Value.ToString()));
+                            ((DataRowView)pc_ProdutoBindingSource.Current).Row["codPro"].ToString())
+                            );
                         FrmProduto_Load(null, null);
                         MessageBox.Show(null, "Apagado com sucesso!", "Exclusão",
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -145,9 +148,15 @@ namespace prjVendas
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(null, "Ocorreu um erro ao excluir o produto!\n" +
+                    "Pode ser que tenham vendas cadastradas com este produto", "Erro ao excluir:",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             catch (Exception ex)
             {
-                MessageBox.Show(null, "Ocorreu um erro:\n" + ex.Message, "Erro:",
+                MessageBox.Show(null, "Ocorreu um erro inesperado!\n" + ex.Message, "Erro ao excluir",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -182,8 +191,10 @@ namespace prjVendas
                 HabilitarBotoes(false);
                 HabilitarCampos(true);
                 txtCodPro.Enabled = false;
-                txtCodPro.Text = dgvProdutos[0, dgvProdutos.CurrentRow.Index].Value.ToString();
-                txtDescricao.Text = dgvProdutos[1, dgvProdutos.CurrentRow.Index].Value.ToString();
+                //txtCodPro.Text = dgvProdutos[0, dgvProdutos.CurrentRow.Index].Value.ToString();
+                codigo = Convert.ToInt32(((DataRowView)pc_ProdutoBindingSource.Current).Row["codPro"].ToString());
+                //txtDescricao.Text = dgvProdutos[1, dgvProdutos.CurrentRow.Index].Value.ToString();
+                txtDescricao.Text = ((DataRowView)pc_ProdutoBindingSource.Current).Row["descricao"].ToString();
                 txtPrecoUnit.Text = dgvProdutos[2, dgvProdutos.CurrentRow.Index].Value.ToString();
                 txtDescricao.Focus();
             }
